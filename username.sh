@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
-# username.sh
-# Jake Jameson
-# CSPC 298
+# username.sh - validate usernames based on assignment rules
 
 set -u
 
@@ -14,10 +12,11 @@ Username rules:
 RULES
 }
 
-# ^ start of string
-# [a-z] first character must be a lowercase letter
+# Regex explanation:
+# ^            start of string
+# [a-z]        first character must be a lowercase letter
 # [a-z0-9_]{2,11} remaining characters can be lowercase/digits/_ and must make total length 3..12
-# $ end of string
+# $            end of string
 USERNAME_RE='^[a-z][a-z0-9_]{2,11}$'
 
 print_rules
@@ -26,7 +25,8 @@ echo
 while true; do
   printf 'Enter a username: '
 
-  # ./username.sh < username-input
+  # Works for interactive input AND for redirected input like:
+  #   ./username.sh < username-input
   if ! IFS= read -r username; then
     echo
     echo "No input received (EOF). Exiting."
